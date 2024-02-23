@@ -57,6 +57,21 @@ export default function Home() {
 
               <Select>
                 <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Proteina" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="cualquiera">Cualquiera</SelectItem>
+                  <SelectItem value="mexicana">Res</SelectItem>
+                  <SelectItem value="francesa">Cerdo</SelectItem>
+                  <SelectItem value="italiana">Pollo</SelectItem>
+                  <SelectItem value="italiana">Camaron</SelectItem>
+                  <SelectItem value="italiana">Pavo</SelectItem>
+                  <SelectItem value="italiana">Pescado</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select>
+                <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Dificultad" />
                 </SelectTrigger>
                 <SelectContent>
