@@ -6,8 +6,11 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/h
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Checkbox } from "@/components/ui/checkbox"
 import { CounterClockwiseClockIcon } from "@radix-ui/react-icons"
 
+// https://github.com/shadcn-ui/ui/blob/main/apps/www/app/examples/playground/page.tsx
 export default function Home() {
 
   return (
@@ -26,7 +29,55 @@ export default function Home() {
                 <h2>¿Qué tipo de Receta te gustaría?</h2>
               </div>
 
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Tipo" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="desayuno">Desayuno</SelectItem>
+                  <SelectItem value="comida">Comida</SelectItem>
+                  <SelectItem value="cena">Cena</SelectItem>
+                  <SelectItem value="postre">Postre</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Cocina" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="cualquiera">Cualquiera</SelectItem>
+                  <SelectItem value="mexicana">Mexicana</SelectItem>
+                  <SelectItem value="francesa">Francesa</SelectItem>
+                  <SelectItem value="italiana">Italiana</SelectItem>
+                  <SelectItem value="china">China</SelectItem>
+                  <SelectItem value="japonesa">Japonesa</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Dificultad" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="cualquiera">Cualquiera</SelectItem>
+                  <SelectItem value="mexicana">Principiante</SelectItem>
+                  <SelectItem value="francesa">Intermedio</SelectItem>
+                  <SelectItem value="italiana">Avanzado</SelectItem>
+                </SelectContent>
+              </Select>
+
               <CaloriesSelector defaultValue={[1000]} />
+
+              <div className="flex items-center space-x-2 py-3">
+                <Checkbox id="azucares" />
+                <label
+                  htmlFor="azucares"
+                  className="text-sm leading-none"
+                >
+                  ¿Bajo en Azúcares?
+                </label>
+              </div>
 
               <div className="flex flex-col space-y-4">
                 <div className="grid h-full gap-6 lg:grid-cols-1">
