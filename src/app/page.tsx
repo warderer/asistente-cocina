@@ -158,7 +158,7 @@ export default function Home() {
                     )}
                   />
 
-                  <CaloriesSelector defaultValue={[1000]} />
+                  <CaloriesSelector defaultValue={[1200]} form={form} />
 
                   <div className="my-5 ">
                     <FormField
