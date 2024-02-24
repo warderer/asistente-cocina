@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image"
+import { useState } from "react"
 import { CaloriesSelector } from "../components/custom/CaloriesSelector"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
@@ -11,14 +12,34 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox"
 import { useForm } from "react-hook-form"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { sendRecipePrompt } from "@/services/recipePrompt_service"
 import { CounterClockwiseClockIcon } from "@radix-ui/react-icons"
 
 // https://github.com/shadcn-ui/ui/blob/main/apps/www/app/examples/playground/page.tsx
 export default function Home() {
+  const [recipe, setRecipe] = useState('')
   const form = useForm()
 
-  function onSubmit(data: any) {
-    console.log(JSON.stringify(data, null, 2))
+  function createPrompt(content: object): object {
+    const prompt = {
+      messages: [
+        { role: "system", content: "Eres un Chef recomendador de recetas de cocina, vas a recomendar en idioma español una receta de cocina tomando en cuenta la siguiente información: tipo, que se refiere al momento en que se consume el alimento; cocina, que se refiere al estilo de cocina del platillo; proteina, que se refiere al tipo de carne principal del platillo; dificultad, que se refiere a la cantidad de pasos, tecnicas y experiencia que se requiere para cocinar la receta; calorias, que se refiere a un aproximado de la cantidad de calorias que quiero que tenga el platillo; bajo en azucar, que si es true sugiere un plato con bajo contenido en azucar, en caso de que sea false puedes ignorar este apartado; ingredientes, donde analiza la lista de ingredientes con que cuento para que el platillo que me recomiendes los incluya. Responde colocando primero en mayúsculas el nombre de la receta, seguido del titulo Ingredientes con el listado de ingredientes, y finalmente el titulo Preparación donde me indiques el paso a paso de la elaboración del platillo" },
+        { role: "user", content: JSON.stringify(content) },
+      ],
+      temperature: 0.7,
+      max_tokens: -1,
+      stream: false,
+    };
+
+    return prompt;
+  }
+
+
+  async function onSubmit(data: any)  {
+    const prompt = createPrompt(data);
+    const response = await sendRecipePrompt(prompt)
+    setRecipe(response?.data)
+    // console.log(response)
   }
 
   return (
@@ -199,6 +220,8 @@ export default function Home() {
                   <Textarea
                     placeholder="Elige las opciones en la barra de la derecha para generar una receta"
                     className="min-h-[400px] flex-1 p-4 md:min-h-[700px] lg:min-h-[700px]"
+                    value={recipe}
+                    readOnly
                   />
                 </div>
               </TabsContent>
