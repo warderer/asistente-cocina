@@ -45,9 +45,15 @@ export default function Home() {
   }
 
   return (
-    <main className="h-full flex-col md:flex">
-      <div className="container flex flex-col items-start justify-between space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
-        <h2 className="text-lg font-semibold">Asistente de Cocina Inteligente</h2>
+    <main className="h-dvh flex-col md:flex">
+      <div className="flex flex-col items-start justify-center space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16 bg-primary gap-x-6">
+        <Image
+          src="/chefxpert-white.png"
+          width={200}
+          height={120}
+          alt="ChefXpert"
+        />
+        <h2 className="text-lg font-semibold text-white">ASISTENTE DE COCINA INTELIGENTE</h2>
       </div>
 
       <Separator />
@@ -227,6 +233,15 @@ export default function Home() {
           </div>
         </div>
       </Tabs>
+      <div className="flex flex-col items-start justify-center space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16 bg-slate-50 gap-x-6">
+        <Image
+          src="/chefxpert.png"
+          width={200}
+          height={120}
+          alt="ChefXpert"
+        />
+        <p className="text-sm font-semibold ">Desarrollado por César Guerra & Benjamín Tass - Alumnos Doctorado en Sistemas Computacionales de la UNISUR ©2024</p>
+      </div>
     </main>
   );
 }
